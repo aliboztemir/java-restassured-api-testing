@@ -1,0 +1,6 @@
+java_resources/ExternalData.class
+pojo/PutUser.class
+java_resources/Payloads.class
+pojo/CreateUser.class
+java_resources/APIResources.class
+pojo/PatchUser.class
