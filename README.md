@@ -18,35 +18,10 @@
 
 # Automated Functional Testing:
 	1) Both valid and invalid scenarios were written for functional tests. The scenarios specified with the @Smoke tag in the feature files are for functional testing.
-	2) You can view valid test cases from the following file path. --> src/test/java/features/ValidCasesTakeawayApi.feature
-	3) You can view invalid test cases from the following file path. --> src/test/java/features/NegativeCasesTakeAwayApi.feature
+	2) You can view valid test cases from the following file path. --> src/test/java/features/PositiveCasesReqresApi.feature
+	3) You can view invalid test cases from the following file path. --> src/test/java/features/NegativeCasesReqresApi.feature
 	4) Note: Test steps were written using only gherkin syntax for negative scenarios. But their stepdefinitions were not developed. In general, a dynamic and generic structure was designed. If desired, step definitions of negative scenarios can also be developed.
 	
-```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-failsafe-plugin</artifactId>
-    <version>2.22.0</version>
-    <executions>
-        <execution>
-            <goals>
-                <goal>integration-test</goal>
-                <goal>verify</goal>
-            </goals>
-            <configuration>
-                <parallel>methods</parallel>
-                <useUnlimitedThreads>true</useUnlimitedThreads>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-To set the thread count to a specific number instead of useUnlimitedThreads use the below setting.
-
-<configuration>
-    <parallel>methods</parallel>
-    <threadCount>4</threadCount>
-</configuration>
-```
 
 ### Test Automation Framework Guidelines:
 
@@ -55,12 +30,12 @@ To set the thread count to a specific number instead of useUnlimitedThreads use 
 	3) Different annotations have been defined for test types. --> src/test/java/features
 	4) Stepdefinition classes have been developed for feature files --> src/test/java/step_definitions
 	5) You can view the classes that manage helper, response and request in the following file path. --> src/test/java/test_resources
-	6- You can view the application's logs in the following file path. --> RestAssuredBDDTests-master/logging.txt
+	6- You can view the application's logs in the following file path. --> ReqresTestAutomation/logging.txt
 
 ### Test Execution
 * Execute from IDE by right clicking on features folder.
 * run `mvn clean test` from command line.
-* Can also be run from Maven using the following command: mvn test -Dcucumber.options="--tags @Smoke or @Stress"
+* Can also be run from Maven using the following command: mvn test -Dcucumber.options="--tags @Smoke or @Users"
 * You can also right click and run with junit.
 
 ### Execution screenshots
@@ -76,6 +51,7 @@ Execution screenshots are placed in screenshots folder (screenshots/TestExecutio
 * Rest Assured
 * Maven
 * Junit
+* Allure Report
 
 ### [PROBLEM] During the tests, the following problems were seen.
 
