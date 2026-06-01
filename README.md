@@ -1,57 +1,121 @@
-#  Project Structure
-* Programming Language: JAVA [JavaSE - 1.7]
-* IDE: Eclipse
-* OS : macOs x
-* Create a Maven project to build the program;
-* Add all dependences in pom.xml regarding some frameworks that I used such as Cucumber to manage BDD, Rest-assured to call the web-service REST and added a json-schema-validator to validate JSON response format;
+# Java API Test Automation with RestAssured and Cucumber
 
-##  BDD requires a feature file to invoke the step definitions:
+## Overview
+This repository contains an API test automation project built with Java, RestAssured, Cucumber, Maven, JUnit, and Allure Reporting.
 
-* Create the scenarios in feature file as per the requirements, so each step in feature file has to match a step definition in class file;
-* Following the BDD practices for coding;
-* Different annotations have been defined for test types.
+It demonstrates an earlier implementation of API automation practices, including BDD scenarios, reusable request/response utilities, POJO-based request models, endpoint abstraction, JSON schema validation, logging, and test reporting.
 
-# Manual Tests:
-	1) Postman tool was used for Manual Tests. At the same time, scenarios were written in features files with the gherkin programming language.;
-	2) You can view the test cases from the following file path. --> src/test/java/features
-	3) The bugs found are stated in the "PROBLEM" tab below
+The project uses the Reqres public REST API as the sample system under test.
 
-# Automated Functional Testing:
-	1) Both valid and invalid scenarios were written for functional tests. The scenarios specified with the @Smoke tag in the feature files are for functional testing.
-	2) You can view valid test cases from the following file path. --> src/test/java/features/PositiveCasesReqresApi.feature
-	3) You can view invalid test cases from the following file path. --> src/test/java/features/NegativeCasesReqresApi.feature
-	4) Note: Test steps were written using only gherkin syntax for negative scenarios. But their stepdefinitions were not developed. In general, a dynamic and generic structure was designed. If desired, step definitions of negative scenarios can also be developed.
-	
+## Historical Context
+This is an older portfolio project preserved to show earlier Java API automation experience.
 
-### Test Automation Framework Guidelines:
+It is not intended to represent a current enterprise-grade framework. The repository is kept as part of a broader automation engineering portfolio, showing previous work with Java, RestAssured, Cucumber, Maven, and API validation.
 
-	1) Created pojo classes for APIs with bodies --> /src/main/java/pojo;
-	2) Endpoints of APIs are defined as enums --> src/main/java/java_resources/APIResources.java;
-	3) Different annotations have been defined for test types. --> src/test/java/features
-	4) Stepdefinition classes have been developed for feature files --> src/test/java/step_definitions
-	5) You can view the classes that manage helper, response and request in the following file path. --> src/test/java/test_resources
-	6- You can view the application's logs in the following file path. --> ReqresTestAutomation/logging.txt
+## Tech Stack
 
-### Test Execution
-* Execute from IDE by right clicking on features folder.
-* run `mvn clean test` from command line.
-* Can also be run from Maven using the following command: mvn test -Dcucumber.options="--tags @Smoke or @Users"
-* You can also right click and run with junit.
+- Java 7
+- Maven
+- RestAssured
+- Cucumber
+- Gherkin
+- JUnit
+- JSON Schema Validator
+- Allure Report
+- Postman for manual API checks
 
-### Execution screenshots
-Execution screenshots are placed in screenshots folder (screenshots/TestExecution-Cucumber.mp4)
-* Reports are generated and placed in target folder `target/cucumber-html-report.html`
-* Sample reports look like this ! "target/TestReportScreenShot.png"
+## Project Structure
 
-![Test Report Screenshot](https://github.com/aliboztemir/ReqresTestAutomation/blob/main/screenshots/TestReportScreenShot.png)
+```
+src/main/java
++-- pojo
++-- java_resources
+    +-- APIResources.java
 
-### Tools / libraries used :
-* Cucumber
-* Gherkin
-* Rest Assured
-* Maven
-* Junit
-* Allure Report
+src/test/java
++-- features
+|   +-- PositiveCasesReqresApi.feature
+|   +-- NegativeCasesReqresApi.feature
++-- step_definitions
++-- test_resources
+```
 
-### [PROBLEM] During the tests, the following problems were seen.
+## Testing Approach
+The project follows a BDD-style API testing approach.
 
+Feature files define API scenarios in Gherkin, and step definition classes implement the executable automation logic.
+
+The framework includes:
+
+- Positive API scenarios
+- Negative API scenarios
+- Smoke test tagging
+- User API test tagging
+- Request and response helper classes
+- POJO models for request bodies
+- API endpoint definitions through enums
+- JSON response schema validation
+- HTML and Allure reporting
+
+## Manual Testing
+Postman was used for initial manual API validation.
+
+The same API behaviors were later represented as Gherkin scenarios under:
+
+```
+src/test/java/features
+```
+
+## Automated Testing
+Automated scenarios are organized in feature files:
+
+```
+src/test/java/features/PositiveCasesReqresApi.feature
+src/test/java/features/NegativeCasesReqresApi.feature
+```
+
+The positive scenarios include implemented step definitions.
+
+Some negative scenarios were documented in Gherkin format as test design coverage but were not fully automated in the original implementation.
+
+## Running Tests
+Run all tests:
+
+```
+mvn clean test
+```
+
+Run tests by Cucumber tag:
+
+```
+mvn test -Dcucumber.options="--tags @Smoke or @Users"
+```
+
+Tests can also be executed from the IDE using the JUnit runner.
+
+## Reporting
+Cucumber HTML reports are generated under:
+
+```
+target/
+```
+
+Example report:
+
+```
+target/cucumber-html-report.html
+```
+
+Allure reporting is also supported if configured in the local environment.
+
+## Logging
+Execution logs are written to:
+
+```
+logging.txt
+```
+
+## Notes
+This repository is intentionally kept close to its original structure. The purpose is to preserve an earlier Java API automation implementation rather than modernize it into a current framework.
+
+For newer examples of API testing and test architecture, see the more recent C#, Python/FastAPI, and Playwright-based repositories in this portfolio.
