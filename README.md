@@ -14,13 +14,16 @@ It is not intended to represent a current enterprise-grade framework. The reposi
 
 ## Tech Stack
 
-- Java 7
+- Java 8
 - Maven
-- RestAssured
-- Cucumber
+- RestAssured 4.3.3
+- Cucumber 6
 - Gherkin
-- JUnit
+- JUnit 4
 - JSON Schema Validator
+- Jackson Databind
+- Gson
+- Apache POI
 - Allure Report
 - Postman for manual API checks
 
@@ -29,15 +32,29 @@ It is not intended to represent a current enterprise-grade framework. The reposi
 ```
 src/main/java
 +-- pojo
+|   +-- CreateUser.java
+|   +-- PatchUser.java
+|   +-- PutUser.java
 +-- java_resources
     +-- APIResources.java
+    +-- ExternalData.java
+    +-- Payloads.java
+    +-- global_data.properties
 
 src/test/java
++-- cucumber_options
+|   +-- TestRunner.java
 +-- features
 |   +-- PositiveCasesReqresApi.feature
 |   +-- NegativeCasesReqresApi.feature
 +-- step_definitions
+|   +-- BlingStepDefinition.java
+|   +-- BlingInValidStepDefinition.java
+|   +-- Hooks.java
 +-- test_resources
+    +-- BlingReqSpecs.java
+    +-- BlingRespSpecs.java
+    +-- Utilities.java
 ```
 
 ## Testing Approach
@@ -54,6 +71,7 @@ The framework includes:
 - Request and response helper classes
 - POJO models for request bodies
 - API endpoint definitions through enums
+- External data and payload management
 - JSON response schema validation
 - HTML and Allure reporting
 
@@ -88,10 +106,10 @@ mvn clean test
 Run tests by Cucumber tag:
 
 ```
-mvn test -Dcucumber.options="--tags @Smoke or @Users"
+mvn test -Dcucumber.filter.tags="@Smoke"
 ```
 
-Tests can also be executed from the IDE using the JUnit runner.
+Tests can also be executed from the IDE using the JUnit runner via `TestRunner.java`.
 
 ## Reporting
 Cucumber HTML reports are generated under:
@@ -103,10 +121,20 @@ target/
 Example report:
 
 ```
-target/cucumber-html-report.html
+target/cucumber-reports.html
 ```
 
-Allure reporting is also supported if configured in the local environment.
+Allure reporting is configured via `maven-surefire-plugin` in `pom.xml` and results are generated under:
+
+```
+target/allure-results
+```
+
+To serve the Allure report locally:
+
+```
+allure serve target/allure-results
+```
 
 ## Logging
 Execution logs are written to:
